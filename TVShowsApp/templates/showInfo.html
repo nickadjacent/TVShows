@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Information</title>
+</head>
+
+<body>
+
+    <h1>TV Show {{show.id}}</h1>
+
+    <a href="/allShows">Go Back</a>
+
+    {% if messages %}
+    <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+
+    <p>Title: {{show.title}}</p>
+
+    <p>Network: {{show.network.name}}</p>
+
+    <p>Release Date: {{show.release_date}}</p>
+
+    <p>Description: {{show.description}}</p>
+
+    <p>Last Updated: {{show.updated_at}}</p>
+
+    <table>
+        <tr>
+            <a href="/editShow/{{show.id}}">Edit</a>
+            |
+            <a href="/delete_show/{{show.id}}">Delete</a>
+        </tr>
+    </table>
+
+</body>
+
+</html>

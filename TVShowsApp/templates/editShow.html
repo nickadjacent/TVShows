@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit a Show</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+</head>
+
+<body id="wrapper">
+
+    <div>
+        <h1 id="header" class="inline_block">Edit {{show.title}}</h1><a class="inline_block, go_back"
+            href="/allShows">Go
+            back</a>
+    </div>
+    {% if messages %}
+    <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+    <form action="/update_show/{{show.id}}" method="POST">
+        {% csrf_token %}
+        <div class="box_margin">
+            <div><label class="width_top" for="">Title</label></div>
+            <div><input class="width_top" type="text" value="{{show.title}}" name="title"></div>
+        </div>
+        <div class="box_margin">
+            <div class="inline_block">
+                <div class="width_middle">
+                    <div><label for="">Network</label></div>
+                    <div><input class="input" type="text" value="{{show.network.name}}" name="network"></div>
+                </div>
+            </div>
+            <div class="inline_block">
+                <div class="width_middle">
+                    <div><label for="">Release Date</label></div>
+                    <div><input class="input" type="date" value="{{show.release_date}}" name="release date"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box_margin">
+            <div><label class="width_top" for="">Description</label></div>
+            <div><input class="width_description" type="text" value="{{show.description}}" name="description"></div>
+        </div>
+        <div id="button_align" class="box_margin">
+            <button id="button" type="submit">Update</button>
+        </div>
+    </form>
+    <a id="all_show" href="/showInfo/{{show.id}}">Go to Show</a>
+
+</body>
+
+</html>

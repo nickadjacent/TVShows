@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Shows</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+</head>
+
+<body id="wrapper">
+    <h1 id="header">Add a New Show</h1>
+    {% if messages %}
+    <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+    <form action="/create_new_show" method="POST">
+        {% csrf_token %}
+        <div class="box_margin">
+            <div><label class="width_top" for="">Title</label></div>
+            <div><input class="width_top" type="text" name="title"></div>
+        </div>
+        <div class="box_margin">
+            <div class="inline_block">
+                <div class="width_middle">
+                    <div><label for="">Network</label></div>
+                    <div><input class="input" type="text" name="network"></div>
+                </div>
+            </div>
+            <div class="inline_block">
+                <div class="width_middle">
+                    <div><label for="">Release Date</label></div>
+                    <div><input class="input" type="date" name="release date"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box_margin">
+            <div><label class="width_top" for="">Description</label></div>
+            <div><input class="width_description" type="text" name="description"></div>
+        </div>
+        <div id="button_align" class="box_margin">
+            <button id="button" type="submit">Create</button>
+        </div>
+    </form>
+
+    <a id="all_show" href="/allShows">All Shows</a>
+
+
+</body>
+
+</html>
